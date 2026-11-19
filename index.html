@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧸 for Tsukii ❤️</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ---------- RESET & GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #ffe4ec;
+      color: #6b4e4b;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #root {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      background: radial-gradient(circle at 10% 30%, #ffd9e6, #ffeef4);
+    }
+
+    /* floating hearts background */
+    .bg-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-hearts span {
+      position: absolute;
+      display: block;
+      font-size: 24px;
+      opacity: 0.2;
+      animation: floatHeart 12s infinite linear;
+      color: #ff8aa1;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.8);
+        opacity: 0.1;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-20vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* ---------- MAIN CARD ---------- */
+    .page-card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 64px 64px 48px 48px;
+      box-shadow: 0 30px 50px rgba(255, 150, 180, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+      padding: 32px 24px;
+      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      border: 1px solid #ffe2ed;
+      animation: cardAppear 0.8s ease-out;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* ---------- MUTE BUTTON ---------- */
+    .mute-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: #ffb6c7;
+      border: none;
+      border-radius: 60px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(255, 120, 150, 0.5);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      backdrop-filter: blur(4px);
+      border: 1px solid #fff5f9;
+    }
+
+    .mute-btn:hover {
+      background: #ff9bb0;
+      transform: scale(1.05);
+    }
+
+    .mute-btn i {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ---------- PAGE 1 ---------- */
+    .page1 {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .teddy-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 12px;
+      margin: 8px 0 8px;
+      flex-wrap: wrap;
+    }
+
+    .teddy {
+      font-size: 5rem;
+      line-height: 1;
+      filter: drop-shadow(0 12px 8px rgba(200, 120, 140, 0.25));
+      animation: bounce 3s infinite alternate ease-in-out;
+    }
+
+    .teddy:nth-child(2) {
+      animation-delay: 0.4s;
+      font-size: 5.2rem;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0) rotate(-2deg);
+      }
+      100% {
+        transform: translateY(-10px) rotate(2deg);
+      }
+    }
+
+    .welcome-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.8rem;
+      color: #b3415c;
+      text-shadow: 4px 4px 0 #ffd9e4;
+      line-height: 1.2;
+      margin-top: 4px;
+    }
+
+    .welcome-sub {
+      font-size: 1.2rem;
+      color: #a16874;
+      font-weight: 500;
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff5f9cc;
+      padding: 10px 20px;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+    }
+
+    .envelope {
+      font-size: 5rem;
+      margin: 12px 0 4px;
+      animation: tilt 2s infinite alternate;
+      filter: drop-shadow(0 12px 10px #ffb3c6);
+    }
+
+    @keyframes tilt {
+      0% {
+        transform: rotate(-8deg) scale(1);
+      }
+      100% {
+        transform: rotate(8deg) scale(1.05);
+      }
+    }
+
+    .btn-open {
+      background: #ff98b2;
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      padding: 16px 48px;
+      border-radius: 100px;
+      box-shadow: 0 20px 30px -10px #ff8fa8, 0 0 0 3px #ffeef3 inset;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto 8px;
+      border: 1px solid white;
+    }
+
+    .btn-open:hover {
+      background: #ff7a9a;
+      box-shadow: 0 24px 36px -8px #f27894, 0 0 0 4px #fff0f5 inset;
+      transform: scale(1.03);
+    }
+
+    /* ---------- PAGE 2 ---------- */
+    .page2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+      min-height: 480px;
+    }
+
+    .apology-heading {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      text-align: center;
+      color: #b3415c;
+      line-height: 1.3;
+      text-shadow: 3px 3px 0 #ffe2ed;
+      max-width: 800px;
+    }
+
+    .apology-text {
+      background: #fff8fbee;
+      backdrop-filter: blur(4px);
+      padding: 28px 32px;
+      border-radius: 48px;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      max-width: 700px;
+      text-align: center;
+      border: 1px solid white;
+      box-shadow: 0 20px 30px -10px #fbc4d2;
+      color: #573e3e;
+      font-weight: 500;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 12px;
+      position: relative;
+      width: 100%;
+      min-height: 100px;
+    }
+
+    .btn-yes {
+      background: #ff8da1;
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.4rem;
+      padding: 18px 40px;
+      border-radius: 100px;
+      box-shadow: 0 18px 24px -8px #ff99aa, 0 0 0 3px #ffeef3 inset;
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid white;
+    }
+
+    .btn-yes:hover {
+      background: #ff708b;
+      transform: scale(1.04);
+    }
+
+    .btn-no {
+      background: #f7d1da;
+      border: none;
+      color: #9a5f6b;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 18px 40px;
+      border-radius: 100px;
+      box-shadow: 0 10px 18px -6px #e6b7c4;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #fff0f5;
+      position: relative; /* for absolute movement */
+      will-change: left, top, transform;
+    }
+
+    /* funny message toast */
+    .funny-toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff2f6;
+      color: #ad4a62;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 60px;
+      box-shadow: 0 12px 30px #ffb8cb;
+      border: 1px solid white;
+      z-index: 1000;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      animation: toastPop 0.3s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes toastPop {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+
+    /* ---------- PAGE 3 ---------- */
+    .page3 {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .photos-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .photo-card {
+      background: #fff7fa;
+      padding: 16px 16px 12px;
+      border-radius: 40px;
+      box-shadow: 0 20px 30px -10px #f5b7c6, 0 0 0 2px #ffeef3 inset;
+      max-width: 380px;
+      width: 100%;
+      transition: 0.3s;
+      border: 1px solid white;
+    }
+
+    .photo-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 32px;
+      background: #ffd9e6;
+      display: block;
+      box-shadow: 0 10px 18px #f3b8c9;
+    }
+
+    .photo-caption {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #9e5b6b;
+      letter-spacing: 0.5px;
+    }
+
+    .letter-box {
+      background: #fffafdcc;
+      backdrop-filter: blur(8px);
+      padding: 40px 36px;
+      border-radius: 64px;
+      max-width: 850px;
+      border: 2px solid white;
+      box-shadow: 0 28px 40px -16px #ecb2c4;
+    }
+
+    .letter-heading {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #b3415c;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .letter-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #543f3f;
+      white-space: pre-line;
+      font-weight: 500;
+    }
+
+    .letter-text p {
+      margin-bottom: 18px;
+    }
+
+    .teddy-love-line {
+      font-size: 1.4rem;
+      text-align: center;
+      background: #ffe2ed;
+      padding: 18px 24px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: #a53f5a;
+      margin: 30px 0 12px;
+      border: 1px solid white;
+    }
+
+    .hug-btn {
+      background: #ffa5b9;
+      border: none;
+      font-weight: 700;
+      font-size: 1.5rem;
+      padding: 18px 44px;
+      border-radius: 100px;
+      color: white;
+      box-shadow: 0 18px 28px -8px #ff92a8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 16px auto 8px;
+      transition: 0.3s;
+      border: 1px solid white;
+    }
+
+    .hug-btn:hover {
+      background: #ff8ba3;
+      transform: scale(1.04);
+    }
+
+    .hug-message {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ae3b59;
+      margin-top: 16px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+      100% { opacity: 0.9; transform: scale(1); }
+    }
+
+    .restart-btn {
+      background: transparent;
+      border: 2px dashed #ff9eb2;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: #b3415c;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.2s;
+      margin: 12px auto 0;
+    }
+
+    .restart-btn:hover {
+      background: #ffe2ed;
+    }
+
+    /* hearts animation (for Yes & Hug) */
+    .hearts-burst {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .heart-particle {
+      position: absolute;
+      font-size: 32px;
+      animation: burstUp 1.2s ease-out forwards;
+    }
+
+    @keyframes burstUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.8) rotate(30deg);
+      }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 640px) {
+      .page-card {
+        padding: 24px 16px;
+        border-radius: 40px;
+      }
+      .welcome-title {
+        font-size: 2.8rem;
+      }
+      .apology-heading {
+        font-size: 2.4rem;
+      }
+      .apology-text {
+        font-size: 1.1rem;
+        padding: 22px 18px;
+      }
+      .btn-yes, .btn-no {
+        font-size: 1.2rem;
+        padding: 14px 28px;
+      }
+      .letter-box {
+        padding: 28px 18px;
+      }
+      .letter-heading {
+        font-size: 2.2rem;
+      }
+      .letter-text {
+        font-size: 1.05rem;
+      }
+      .teddy-love-line {
+        font-size: 1.2rem;
+      }
+      .hug-btn {
+        font-size: 1.3rem;
+        padding: 14px 28px;
+      }
+      .teddy {
+        font-size: 4rem;
+      }
+      .teddy:nth-child(2) {
+        font-size: 4.2rem;
+      }
+      .mute-btn {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div class="bg-hearts" id="bgHearts"></div>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    // ---------- BACKGROUND HEARTS ----------
+    (function addBgHearts() {
+      const container = document.getElementById('bgHearts');
+      const emojis = ['❤️', '🧸', '💕', '🌸', '✨', '💗', '⭐', '🎀'];
+      for (let i = 0; i < 28; i++) {
+        const span = document.createElement('span');
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * 100 + '%';
+        span.style.fontSize = (14 + Math.random() * 28) + 'px';
+        span.style.animationDelay = Math.random() * 12 + 's';
+        span.style.animationDuration = (8 + Math.random() * 12) + 's';
+        container.appendChild(span);
+      }
+    })();
+
+    // ---------- AUDIO (mute/unmute) ----------
+    const audioCtx = {
+      el: null,
+      muted: true,
+      init() {
+        if (!this.el) {
+          this.el = new Audio();
+          // royalty-free gentle music placeholder (romantic soft loop)
+          this.el.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+          this.el.loop = true;
+          this.el.volume = 0.25;
+          this.el.muted = true;
+        }
+      },
+      toggle() {
+        this.init();
+        if (this.muted) {
+          this.el.muted = false;
+          this.el.play().catch(() => {});
+          this.muted = false;
+        } else {
+          this.el.muted = true;
+          this.muted = true;
+        }
+        return this.muted;
+      }
+    };
+
+    // ---------- ICONS (Lucide) ----------
+    const RefreshCw = ({ size = 20 }) => <i data-lucide="refresh-cw" style={{ width: size, height: size }}></i>;
+    const VolumeX = ({ size = 20 }) => <i data-lucide="volume-x" style={{ width: size, height: size }}></i>;
+    const Volume2 = ({ size = 20 }) => <i data-lucide="volume-2" style={{ width: size, height: size }}></i>;
+    const Heart = ({ size = 24 }) => <i data-lucide="heart" style={{ width: size, height: size, fill: 'currentColor' }}></i>;
+    const Mail = ({ size = 24 }) => <i data-lucide="mail" style={{ width: size, height: size }}></i>;
+    const Smile = ({ size = 24 }) => <i data-lucide="smile" style={{ width: size, height: size }}></i>;
+    const Frown = ({ size = 24 }) => <i data-lucide="frown" style={{ width: size, height: size }}></i>;
+
+    // re-run lucide after render
+    function refreshIcons() {
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    // ---------- MAIN APP ----------
+    function App() {
+      const [page, setPage] = React.useState(1);
+      const [muted, setMuted] = React.useState(true);
+      const [funnyMsg, setFunnyMsg] = React.useState('');
+      const [showHugMsg, setShowHugMsg] = React.useState(false);
+
+      // audio toggle
+      const toggleMute = () => {
+        const newMuted = audioCtx.toggle();
+        setMuted(newMuted);
+      };
+
+      // heart burst effect
+      const burstHearts = (count = 30) => {
+        const container = document.createElement('div');
+        container.className = 'hearts-burst';
+        document.body.appendChild(container);
+        const emojis = ['❤️', '💖', '💗', '🧸', '💕', '🌸'];
+        for (let i = 0; i < count; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'heart-particle';
+          heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          heart.style.left = (10 + Math.random() * 80) + '%';
+          heart.style.top = (30 + Math.random() * 40) + '%';
+          heart.style.fontSize = (18 + Math.random() * 30) + 'px';
+          heart.style.animationDelay = (Math.random() * 0.3) + 's';
+          container.appendChild(heart);
+        }
+        setTimeout(() => container.remove(), 1500);
+      };
+
+      // navigation
+      const goToPage = (p) => {
+        setPage(p);
+        setTimeout(() => { refreshIcons(); }, 100);
+        if (p === 2) setShowHugMsg(false);
+      };
+
+      // restart
+      const restart = () => {
+        setPage(1);
+        setShowHugMsg(false);
+        setFunnyMsg('');
+        refreshIcons();
+      };
+
+      // YES handler
+      const handleYes = () => {
+        burstHearts(36);
+        setTimeout(() => {
+          goToPage(3);
+        }, 800);
+      };
+
+      // HUG handler
+      const handleHug = () => {
+        burstHearts(42);
+        setShowHugMsg(true);
+        setTimeout(() => setShowHugMsg(false), 4000);
+      };
+
+      // funny message auto-hide
+      React.useEffect(() => {
+        if (funnyMsg) {
+          const t = setTimeout(() => setFunnyMsg(''), 2000);
+          return () => clearTimeout(t);
+        }
+      }, [funnyMsg]);
+
+      // refresh icons on page change
+      React.useEffect(() => {
+        refreshIcons();
+      }, [page, showHugMsg, funnyMsg]);
+
+      // ---------- PAGE 1 ----------
+      const Page1 = () => (
+        <div className="page1">
+          <div className="teddy-row">
+            <span className="teddy">🧸</span>
+            <span className="teddy">🧸</span>
+          </div>
+          <h1 className="welcome-title">Open Tsukii 💗</h1>
+          <div className="welcome-sub">Someone has something special to tell you...</div>
+          <div className="envelope">💌</div>
+          <button className="btn-open" onClick={() => goToPage(2)}>
+            <Mail size={28} /> Open Me 💌
+          </button>
+        </div>
+      );
+
+      // ---------- PAGE 2 ----------
+      const Page2 = () => {
+        const yesRef = React.useRef(null);
+        const noRef = React.useRef(null);
+        const [noPos, setNoPos] = React.useState({ x: 0, y: 0, isMoved: false });
+        const [noStyle, setNoStyle] = React.useState({});
+        const messages = [
+          "Are you really sure? 🥺",
+          "Please think once again!",
+          "My little heart is crying 😭",
+          "Don't press me, Tsukiii!",
+          "🥺🥺🥺",
+          "Pleaaase?",
+          "I'll be sad...",
+          "Nooo don't!",
+        ];
+
+        // Move the NO button to random position (relative to viewport)
+        const dodgeButton = () => {
+          const btn = noRef.current;
+          if (!btn) return;
+          const btnRect = btn.getBoundingClientRect();
+          const yesBtn = yesRef.current;
+          let yesRect = { left: 0, right: 0, top: 0, bottom: 0 };
+          if (yesBtn) yesRect = yesBtn.getBoundingClientRect();
+
+          const winW = window.innerWidth;
+          const winH = window.innerHeight;
+
+          // avoid overlapping YES button
+          let newLeft, newTop, safe = false, attempts = 0;
+          while (!safe && attempts < 60) {
+            newLeft = Math.random() * (winW - btnRect.width - 40) + 20;
+            newTop = Math.random() * (winH - btnRect.height - 40) + 20;
+            // check distance from YES button
+            const overlapX = Math.max(0, Math.min(newLeft + btnRect.width, yesRect.right) - Math.max(newLeft, yesRect.left));
+            const overlapY = Math.max(0, Math.min(newTop + btnRect.height, yesRect.bottom) - Math.max(newTop, yesRect.top));
+            const overlapArea = overlapX * overlapY;
+            if (overlapArea < 400) safe = true; // allow tiny overlap but not full block
+            attempts++;
+          }
+
+          // Ensure not covering entire screen? fine
+          setNoPos({ x: newLeft, y: newTop, isMoved: true });
+          setNoStyle({
+            position: 'fixed',
+            left: newLeft + 'px',
+            top: newTop + 'px',
+            zIndex: 1000,
+            transition: 'left 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.2), top 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.2)',
+          });
+          // funny message
+          setFunnyMsg(messages[Math.floor(Math.random() * messages.length)]);
+        };
+
+        // dodge on mouse enter / touch start / click
+        const handleDodge = (e) => {
+          if (e && e.preventDefault) e.preventDefault();
+          dodgeButton();
+        };
+
+        // on mobile, also dodge on touchmove near button? use touchstart
+        const attachDodge = () => {
+          const btn = noRef.current;
+          if (!btn) return;
+          btn.addEventListener('mouseenter', handleDodge);
+          btn.addEventListener('touchstart', handleDodge, { passive: false });
+          btn.addEventListener('click', handleDodge);
+          return () => {
+            btn.removeEventListener('mouseenter', handleDodge);
+            btn.removeEventListener('touchstart', handleDodge);
+            btn.removeEventListener('click', handleDodge);
+          };
+        };
+
+        React.useEffect(() => {
+          const cleanup = attachDodge();
+          // also reposition if window resizes to keep in bounds? not necessary
+          return cleanup;
+        }, []);
+
+        // if not moved yet, button stays in normal flow
+        const noButtonProps = noPos.isMoved ? {
+          style: { ...noStyle, position: 'fixed' },
+          ref: noRef,
+        } : { ref: noRef };
+
+        return (
+          <div className="page2">
+            <h2 className="apology-heading">Please Apologize Me, Tsuki 🥺❤️</h2>
+            <div className="apology-text">
+              I know I might have hurt you, and I genuinely feel sorry.ninu chala hurt cheysa ani naku chala regret ga undi kani oka chance ivvu tsuki naku sariga ela matladalo telidu epudu ela undalo telidu pakka nerchukunta next time repeate cheyanu.
+            </div>
+            <div className="btn-group">
+              <button className="btn-yes" ref={yesRef} onClick={handleYes}>
+                <Heart size={24} /> Yes, I Forgive You ❤️
+              </button>
+              <button className="btn-no" {...noButtonProps}>
+                <Frown size={22} /> Not Forgiving You 😤
+              </button>
+            </div>
+            {funnyMsg && <div className="funny-toast">{funnyMsg}</div>}
+          </div>
+        );
+      };
+
+      // ---------- PAGE 3 ----------
+      const Page3 = () => (
+        <div className="page3">
+          <div className="photos-row">
+            <div className="photo-card">
+              <img
+                className="photo-img"
+                src="photo1.jpg"
+                alt="Teddy memory 1"
+                onError={(e) => { e.target.src = 'https://placebear.com/400/400'; }}
+              />
+              <div className="photo-caption">🧸 give me ashirvad</div>
+            </div>
+            <div className="photo-card">
+              <img
+                className="photo-img"
+                src="photo2.jpg"
+                alt="Teddy memory 2"
+                onError={(e) => { e.target.src = 'https://placebear.com/400/400'; }}
+              />
+              <div className="photo-caption">every day i will take ashirvad from your cuite legs   </div>
+            </div>
+          </div>
+
+          <div className="letter-box">
+            <h2 className="letter-heading">Please Forgive Me, Tsukiii ❤️</h2>
+            <div className="letter-text">
+              <p>Dear Tsukiii,</p>
+              <p>I don't know how to express everything perfectly, but I genuinely want you to know that I'm sorry.</p>
+              <p>I never wanted to hurt you or make you feel bad. </p>
+              <p>I know that I have made mistakes and I sincerely regret hurting you Maybe my words or actions made you feel disappointed pls forgive me.</p>
+              <p>Your friendship means a lot to me.  i dont want to lose you gnypita , but I sincerely hope you can give me another chance.</p>
+              <p>Once again, I'm really sorry, Tsukiii. Please forgive me. 🥺❤️</p>
+              <p>With lots of love,<br />Your friend ❤️</p>
+            </div>
+          </div>
+
+          <div className="teddy-love-line">
+           my cuite little tsukii
+          </div>
+
+          <button className="hug-btn" onClick={handleHug}>
+            <Heart size={28} />  aswita ki niku istam iyna vi icha tiskoo anything for you tsukii
+          </button>
+          {showHugMsg && (
+            <div className="hug-message">One big virtual hug for you, Tsukiii! ❤️</div>
+          )}
+
+          <button className="restart-btn" onClick={restart}>
+            <RefreshCw size={18} /> restart our story
+          </button>
+        </div>
+      );
+
+      return (
+        <>
+          <div className="page-card">
+            {page === 1 && <Page1 />}
+            {page === 2 && <Page2 />}
+            {page === 3 && <Page3 />}
+          </div>
+          <button className="mute-btn" onClick={toggleMute}>
+            {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+            {muted ? 'unmute' : 'mute'}
+          </button>
+        </>
+      );
+    }
+
+    // render
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+
+    // re-init icons after render
+    window.addEventListener('load', () => { if (window.lucide) window.lucide.createIcons(); });
+    setTimeout(() => { if (window.lucide) window.lucide.createIcons(); }, 500);
+  </script>
+</body>
+</html>
